@@ -47,9 +47,13 @@ function formatDate(iso) {
   const d = new Date(iso);
   if (isNaN(d)) return "—";
   const opts = { day: "2-digit", month: "short", year: "numeric" };
-  const datePart = d.toLocaleDateString("en-GB", opts);
-  const timePart = d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
-  return `${datePart}, ${timePart}`;
+  return d.toLocaleDateString("en-GB", opts);
+}
+
+function toDateInputValue(iso) {
+  const d = new Date(iso);
+  if (isNaN(d)) return "";
+  return d.toISOString().slice(0, 10);
 }
 
 function resultUrlFor(token) {
@@ -139,9 +143,11 @@ function openFormModal(record) {
     document.getElementById("totalMarks").value = record.totalMarks;
     document.getElementById("obtainedMarks").value = record.obtainedMarks;
     document.getElementById("status").value = record.status;
+    document.getElementById("issuedOn").value = toDateInputValue(record.issuedOn);
   } else {
     formModalTitle.textContent = "Add Student Result";
     document.getElementById("recordId").value = "";
+    document.getElementById("issuedOn").value = new Date().toISOString().slice(0, 10);
   }
   formModalOverlay.classList.remove("hidden");
 }
@@ -178,6 +184,7 @@ recordForm.addEventListener("submit", async (e) => {
     obtainedMarks,
     percentage,
     status: document.getElementById("status").value,
+    issuedOn: new Date(document.getElementById("issuedOn").value + "T00:00:00").toISOString(),
   };
 
   try {
@@ -188,7 +195,7 @@ recordForm.addEventListener("submit", async (e) => {
       await loadRecords();
     } else {
       const token = genToken();
-      const newRecord = { ...data, token, issuedOn: new Date().toISOString() };
+      const newRecord = { ...data, token };
       await setDoc(doc(db, RESULTS_COLLECTION, token), newRecord);
       showToast("Record added.");
       closeFormModal();
