@@ -19,9 +19,7 @@ function formatDate(iso) {
   const d = new Date(iso);
   if (isNaN(d)) return "—";
   const opts = { day: "2-digit", month: "short", year: "numeric" };
-  const datePart = d.toLocaleDateString("en-GB", opts);
-  const timePart = d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
-  return `${datePart}, ${timePart}`;
+  return d.toLocaleDateString("en-GB", opts);
 }
 
 function hide(id) {
@@ -65,9 +63,6 @@ function renderRecord(rec) {
   const statusPill = document.getElementById("rStatusPill");
   statusPill.textContent = rec.status;
   statusPill.classList.add(rec.status === "Pass" ? "pass" : "fail");
-
-  document.getElementById("verifyUrlNote").textContent =
-    window.location.origin + window.location.pathname + "?token=" + rec.token;
 
   document.title = rec.studentName + " — Result | Thal University";
 
