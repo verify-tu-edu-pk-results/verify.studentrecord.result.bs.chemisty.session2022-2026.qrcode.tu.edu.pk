@@ -1,0 +1,1 @@
+# verify.studentrecord.result.bs.chemisty.session2022-2026.qrcode.tu.edu.pk
