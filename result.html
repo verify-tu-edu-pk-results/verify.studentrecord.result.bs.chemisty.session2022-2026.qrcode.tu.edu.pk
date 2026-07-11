@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Result Verification | Thal University</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="loadingState" style="min-height:100vh; display:flex; align-items:center; justify-content:center; color:#6b7280; font-size:14px;">
+  Verifying result…
+</div>
+
+<!-- ============ Manual lookup (shown when no token in URL) ============ -->
+<div class="lookup-box hidden" id="lookupBox">
+  <div class="icon-circle">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+  </div>
+  <h2>Result Verification</h2>
+  <p>Scan the QR code printed on a result slip, or enter the verification token / roll number below to check a result.</p>
+  <div class="input-group">
+    <span class="icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </span>
+    <input type="text" id="manualToken" placeholder="Enter token or roll number">
+  </div>
+  <button class="btn-primary" id="manualLookupBtn" style="margin-top:4px;">Verify Result</button>
+</div>
+
+<!-- ============ Not found state ============ -->
+<div class="not-found hidden" id="notFoundBox">
+  <div class="icon-circle">!</div>
+  <h2>Result Not Found</h2>
+  <p>We couldn't verify a record for this token. Please check the QR code or link and try again.</p>
+</div>
+
+<!-- ============ Result card ============ -->
+<div class="result-shell hidden" id="resultShell">
+  <div class="result-card">
+    <div class="result-header">
+      <div class="result-header-top">
+        <div class="university-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>
+          Thal University
+        </div>
+        <button class="print-btn no-print" id="printBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print Result
+        </button>
+      </div>
+      <h1>Result Verification Page</h1>
+      <p>This result was verified using a secure QR token linked to the student record.</p>
+    </div>
+
+    <div class="result-body">
+      <div class="record-top">
+        <div>
+          <div class="eyebrow">VERIFIED STUDENT RECORD</div>
+          <div class="name" id="rStudentName">—</div>
+          <div class="issued" id="rIssued">—</div>
+        </div>
+        <div class="status-pill" id="rStatusPill">—</div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field-card">
+          <div class="flabel">Student Name</div>
+          <div class="fvalue" id="rStudentName2">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Father Name</div>
+          <div class="fvalue" id="rFatherName">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Roll No</div>
+          <div class="fvalue" id="rRollNo">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Registration No</div>
+          <div class="fvalue" id="rRegNo">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Total CGPA</div>
+          <div class="fvalue" id="rTotalCgpa">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Obtained CGPA</div>
+          <div class="fvalue" id="rObtCgpa">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Total Marks</div>
+          <div class="fvalue" id="rTotalMarks">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Obtained Marks</div>
+          <div class="fvalue" id="rObtMarks">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Marks Percentage</div>
+          <div class="fvalue" id="rPercentage">—</div>
+        </div>
+        <div class="field-card">
+          <div class="flabel">Result Status</div>
+          <div class="fvalue" id="rStatus">—</div>
+        </div>
+      </div>
+
+      <div class="verify-note no-print" id="verifyUrlNote">verify.tu.edu.pk</div>
+    </div>
+  </div>
+</div>
+
+<script src="firebase-config.js"></script>
+<script type="module" src="app-result.js"></script>
+</body>
+</html>
