@@ -7,10 +7,10 @@
 //   "Your apps" → Web app → SDK setup and configuration
 // ===========================================================
 window.firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDJS0J5wXhw1i8LGr7yCY5yzfRUCNKJrAM",
+  authDomain: "thal-university-results.firebaseapp.com",
+  projectId: "thal-university-results",
+  storageBucket: "thal-university-results.firebasestorage.app",
+  messagingSenderId: "399675511179",
+  appId: "1:399675511179:web:6e5a5ca4cc31bf193d9f8e"
 };
