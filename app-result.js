@@ -19,7 +19,9 @@ function formatDate(iso) {
   const d = new Date(iso);
   if (isNaN(d)) return "—";
   const opts = { day: "2-digit", month: "short", year: "numeric" };
-  return d.toLocaleDateString("en-GB", opts);
+  const datePart = d.toLocaleDateString("en-GB", opts);
+  const timePart = d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
+  return `${datePart}, ${timePart}`;
 }
 
 function hide(id) {
